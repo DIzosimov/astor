@@ -281,6 +281,7 @@ public abstract class AstorCoreEngine implements AstorExtensionPoint {
 			if (!f.exists())
 				f.mkdirs();
 
+			double fitnessScore = solutionVariant.getFitness();
 			String absoluteFileName = output + "/patchinfo_" + solutionVariant.getId() + ".json";
 
 			try (FileWriter file = new FileWriter(absoluteFileName)) {
@@ -301,7 +302,7 @@ public abstract class AstorCoreEngine implements AstorExtensionPoint {
 			}
 
 			long timelapsed = (new Date()).getTime() - this.dateInitEvolution.getTime();
-			absoluteFileName = (new File(output + "/patch_" + timelapsed + "_" + solutionVariant.getId() + ".diff"))
+			absoluteFileName = (new File(output + "/patch_" + timelapsed + "_fitness" + fitnessScore + "_" + solutionVariant.getId() + ".diff"))
 					.getAbsolutePath();
 			try (FileWriter file = new FileWriter(absoluteFileName)) {
 
